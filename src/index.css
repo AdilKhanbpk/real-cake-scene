@@ -2,95 +2,110 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Warm, intimate color palette for realism */
+    --background: 30 25% 12%;
+    --foreground: 35 30% 90%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 30 20% 18%;
+    --card-foreground: 35 30% 90%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 30 20% 18%;
+    --popover-foreground: 35 30% 90%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 35 45% 65%;
+    --primary-foreground: 30 25% 12%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 30 20% 22%;
+    --secondary-foreground: 35 30% 85%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 30 15% 25%;
+    --muted-foreground: 35 20% 60%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 38 50% 55%;
+    --accent-foreground: 30 25% 12%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 35 30% 95%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 30 20% 28%;
+    --input: 30 20% 28%;
+    --ring: 35 45% 50%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
+    /* Cake-specific design tokens */
+    --cake-vanilla: 38 35% 78%;
+    --cake-vanilla-dark: 35 30% 62%;
+    --cake-cream: 40 40% 88%;
+    --cake-cream-shadow: 35 25% 70%;
+    --cake-caramel: 30 40% 55%;
+    --cake-cocoa: 25 35% 42%;
+    --cake-frosting: 38 30% 92%;
+    --cake-frosting-shadow: 35 25% 82%;
+    
+    /* Candle tokens */
+    --candle-wax: 45 25% 85%;
+    --candle-wax-shadow: 40 20% 70%;
+    --flame-core: 45 100% 70%;
+    --flame-mid: 35 100% 55%;
+    --flame-outer: 25 100% 45%;
+    --flame-glow: 40 100% 60%;
+    
+    /* Scene tokens */
+    --table-surface: 25 30% 22%;
+    --table-highlight: 30 25% 30%;
+    --ambient-shadow: 25 40% 8%;
+    --warm-light: 40 60% 75%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 30 20% 15%;
+    --sidebar-foreground: 35 30% 85%;
+    --sidebar-primary: 35 45% 60%;
+    --sidebar-primary-foreground: 30 25% 12%;
+    --sidebar-accent: 30 20% 25%;
+    --sidebar-accent-foreground: 35 30% 85%;
+    --sidebar-border: 30 20% 25%;
+    --sidebar-ring: 35 45% 50%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 30 25% 8%;
+    --foreground: 35 30% 92%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 30 20% 12%;
+    --card-foreground: 35 30% 92%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 30 20% 12%;
+    --popover-foreground: 35 30% 92%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 35 45% 70%;
+    --primary-foreground: 30 25% 10%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 30 20% 18%;
+    --secondary-foreground: 35 30% 88%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 30 15% 20%;
+    --muted-foreground: 35 20% 55%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 38 50% 60%;
+    --accent-foreground: 30 25% 10%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 62% 40%;
+    --destructive-foreground: 35 30% 95%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 30 20% 22%;
+    --input: 30 20% 22%;
+    --ring: 35 45% 55%;
+
+    --sidebar-background: 30 20% 10%;
+    --sidebar-foreground: 35 30% 88%;
+    --sidebar-primary: 35 45% 65%;
+    --sidebar-primary-foreground: 30 25% 10%;
+    --sidebar-accent: 30 20% 20%;
+    --sidebar-accent-foreground: 35 30% 88%;
+    --sidebar-border: 30 20% 20%;
+    --sidebar-ring: 35 45% 55%;
   }
 }
 
@@ -102,4 +117,43 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Candle flame animation */
+@keyframes flame-flicker {
+  0%, 100% {
+    transform: scaleY(1) scaleX(1) skewX(0deg);
+    opacity: 1;
+  }
+  25% {
+    transform: scaleY(1.04) scaleX(0.97) skewX(-1deg);
+    opacity: 0.95;
+  }
+  50% {
+    transform: scaleY(0.96) scaleX(1.02) skewX(1deg);
+    opacity: 1;
+  }
+  75% {
+    transform: scaleY(1.02) scaleX(0.98) skewX(-0.5deg);
+    opacity: 0.97;
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.05);
+  }
+}
+
+.flame-animate {
+  animation: flame-flicker 2s ease-in-out infinite;
+}
+
+.glow-animate {
+  animation: glow-pulse 2.5s ease-in-out infinite;
 }

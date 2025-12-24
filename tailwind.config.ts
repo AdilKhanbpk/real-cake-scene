@@ -57,6 +57,33 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Cake-specific colors
+        cake: {
+          vanilla: "hsl(var(--cake-vanilla))",
+          "vanilla-dark": "hsl(var(--cake-vanilla-dark))",
+          cream: "hsl(var(--cake-cream))",
+          "cream-shadow": "hsl(var(--cake-cream-shadow))",
+          caramel: "hsl(var(--cake-caramel))",
+          cocoa: "hsl(var(--cake-cocoa))",
+          frosting: "hsl(var(--cake-frosting))",
+          "frosting-shadow": "hsl(var(--cake-frosting-shadow))",
+        },
+        candle: {
+          wax: "hsl(var(--candle-wax))",
+          "wax-shadow": "hsl(var(--candle-wax-shadow))",
+        },
+        flame: {
+          core: "hsl(var(--flame-core))",
+          mid: "hsl(var(--flame-mid))",
+          outer: "hsl(var(--flame-outer))",
+          glow: "hsl(var(--flame-glow))",
+        },
+        scene: {
+          table: "hsl(var(--table-surface))",
+          "table-highlight": "hsl(var(--table-highlight))",
+          shadow: "hsl(var(--ambient-shadow))",
+          "warm-light": "hsl(var(--warm-light))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -65,20 +92,12 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
       animation: {
