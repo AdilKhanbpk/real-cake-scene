@@ -4,13 +4,15 @@ import CandleFlame from "./CandleFlame";
 interface CandleProps {
   delay?: number;
   height?: number;
+  isLit?: boolean;
+  lightDelay?: number;
 }
 
 /**
  * Realistic candle with cylindrical wax body and flame.
  * Gradient simulates roundness and light hitting the surface.
  */
-const Candle = ({ delay = 0, height = 32 }: CandleProps) => {
+const Candle = ({ delay = 0, height = 32, isLit = true, lightDelay = 0 }: CandleProps) => {
   return (
     <motion.div
       className="relative flex flex-col items-center"
@@ -20,7 +22,7 @@ const Candle = ({ delay = 0, height = 32 }: CandleProps) => {
     >
       {/* Flame positioned above candle */}
       <div className="mb-0.5">
-        <CandleFlame />
+        <CandleFlame isLit={isLit} delay={lightDelay} />
       </div>
       
       {/* Wick - thin dark element connecting flame to candle */}

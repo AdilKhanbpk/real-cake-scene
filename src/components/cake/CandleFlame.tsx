@@ -1,16 +1,25 @@
 import { motion } from "framer-motion";
 
+interface CandleFlameProps {
+  isLit?: boolean;
+  delay?: number;
+}
+
 /**
  * Realistic candle flame built from layered divs with gradients.
  * Uses CSS animations for subtle, natural flicker movement.
+ * Can be toggled between lit and unlit states.
  */
-const CandleFlame = () => {
+const CandleFlame = ({ isLit = true, delay = 0 }: CandleFlameProps) => {
   return (
     <motion.div
       className="relative flex items-end justify-center"
       initial={{ opacity: 0, scale: 0 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.8, delay: 1.2, ease: "easeOut" }}
+      animate={{ 
+        opacity: isLit ? 1 : 0, 
+        scale: isLit ? 1 : 0 
+      }}
+      transition={{ duration: 0.6, delay: isLit ? delay : 0, ease: "easeOut" }}
     >
       {/* Outer glow - soft ambient light from flame */}
       <div 

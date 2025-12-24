@@ -2,30 +2,37 @@ import { motion } from "framer-motion";
 import CakeLayer from "./CakeLayer";
 import Candle from "./Candle";
 
+interface BirthdayCakeProps {
+  visible?: boolean;
+  candlesLit?: boolean;
+}
+
 /**
  * Complete birthday cake assembly with realistic layered construction.
  * Simulates a physical cake placed on a table with warm indoor lighting.
  */
-const BirthdayCake = () => {
+const BirthdayCake = ({ visible = true, candlesLit = true }: BirthdayCakeProps) => {
   const cakeWidth = 220;
+
+  if (!visible) return null;
   
   return (
     <motion.div
       className="relative flex flex-col items-center"
-      initial={{ opacity: 0, y: 40, scale: 0.96 }}
+      initial={{ opacity: 0, y: 60, scale: 0.96 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ 
-        duration: 1.2, 
+        duration: 1.5, 
         ease: [0.25, 0.1, 0.25, 1], // Smooth ease-out curve
       }}
     >
       {/* Candles positioned on top of cake */}
       <div className="relative flex items-end justify-center gap-8 mb-1 z-10">
-        <Candle delay={0} height={28} />
-        <Candle delay={0.1} height={32} />
-        <Candle delay={0.2} height={30} />
-        <Candle delay={0.15} height={34} />
-        <Candle delay={0.05} height={29} />
+        <Candle delay={0} height={28} isLit={candlesLit} lightDelay={0} />
+        <Candle delay={0.1} height={32} isLit={candlesLit} lightDelay={0.15} />
+        <Candle delay={0.2} height={30} isLit={candlesLit} lightDelay={0.3} />
+        <Candle delay={0.15} height={34} isLit={candlesLit} lightDelay={0.45} />
+        <Candle delay={0.05} height={29} isLit={candlesLit} lightDelay={0.6} />
       </div>
       
       {/* Cake body - stacked layers from top to bottom */}
