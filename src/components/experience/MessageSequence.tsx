@@ -39,7 +39,7 @@ const MessageSequence = ({ active, onComplete }: MessageSequenceProps) => {
 
   return (
     <motion.div
-      className="absolute inset-0 flex items-center justify-center z-50 pointer-events-none"
+      className="absolute inset-0 flex items-center justify-center -translate-y-[5%] md:-translate-y-[10%] z-50 pointer-events-none"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}

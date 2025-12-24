@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import CakeLayer from "./CakeLayer";
 import Candle from "./Candle";
@@ -12,34 +13,52 @@ interface BirthdayCakeProps {
  * Simulates a physical cake placed on a table with warm indoor lighting.
  */
 const BirthdayCake = ({ visible = true, candlesLit = true }: BirthdayCakeProps) => {
-  const cakeWidth = 220;
+  const [windowWidth, setWindowWidth] = useState(typeof window !== "undefined" ? window.innerWidth : 1000);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Granular scaling for better responsiveness
+  const getCakeWidth = () => {
+    if (windowWidth < 380) return 140;   // Very small mobile
+    if (windowWidth < 480) return 180;   // Small mobile
+    if (windowWidth < 768) return 220;   // Tablet/Large mobile
+    if (windowWidth < 1200) return 260;  // Standard desktop
+    return 320;                          // Large screens
+  };
+
+  const cakeWidth = getCakeWidth();
+  const isMobile = windowWidth < 768;
 
   if (!visible) return null;
-  
+
   return (
     <motion.div
       className="relative flex flex-col items-center"
       initial={{ opacity: 0, y: 60, scale: 0.96 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ 
-        duration: 1.5, 
+      transition={{
+        duration: 1.5,
         ease: [0.25, 0.1, 0.25, 1], // Smooth ease-out curve
       }}
     >
       {/* Candles positioned on top of cake */}
-      <div className="relative flex items-end justify-center gap-8 mb-1 z-10">
+      <div className={`relative flex items-end justify-center ${isMobile ? 'gap-4' : 'gap-8'} mb-1 z-10`}>
         <Candle delay={0} height={28} isLit={candlesLit} lightDelay={0} />
         <Candle delay={0.1} height={32} isLit={candlesLit} lightDelay={0.15} />
         <Candle delay={0.2} height={30} isLit={candlesLit} lightDelay={0.3} />
         <Candle delay={0.15} height={34} isLit={candlesLit} lightDelay={0.45} />
         <Candle delay={0.05} height={29} isLit={candlesLit} lightDelay={0.6} />
       </div>
-      
+
       {/* Cake body - stacked layers from top to bottom */}
       <div className="relative flex flex-col items-center">
-        
+
         {/* Top frosting surface with gloss */}
-        <div 
+        <div
           className="relative z-10"
           style={{
             width: `${cakeWidth}px`,
@@ -60,14 +79,14 @@ const BirthdayCake = ({ visible = true, candlesLit = true }: BirthdayCakeProps) 
           }}
         >
           {/* Glossy highlight from warm light source (top-left) */}
-          <div 
+          <div
             className="absolute top-1 left-4 w-16 h-2 rounded-full"
             style={{
               background: "linear-gradient(90deg, hsla(50, 60%, 98%, 0.6), transparent)",
             }}
           />
         </div>
-        
+
         {/* Outer frosting coat wrapping the cake */}
         <motion.div
           className="relative -mt-1"
@@ -97,21 +116,21 @@ const BirthdayCake = ({ visible = true, candlesLit = true }: BirthdayCakeProps) 
           <div className="flex flex-col items-center pt-2 gap-0.5">
             {/* Top sponge layer */}
             <CakeLayer type="sponge" width={cakeWidth - 4} height={28} delay={0.2} />
-            
+
             {/* Cream filling */}
             <CakeLayer type="cream" width={cakeWidth - 2} height={10} delay={0.25} />
-            
+
             {/* Middle sponge layer */}
             <CakeLayer type="sponge" width={cakeWidth - 4} height={26} delay={0.3} />
-            
+
             {/* Bottom cream filling */}
             <CakeLayer type="cream" width={cakeWidth - 2} height={10} delay={0.35} />
-            
+
             {/* Bottom sponge layer - slightly larger for stability */}
             <CakeLayer type="sponge" width={cakeWidth} height={30} delay={0.4} />
           </div>
         </motion.div>
-        
+
         {/* Frosting edge detail at bottom */}
         <motion.div
           className="relative -mt-1"
@@ -135,7 +154,7 @@ const BirthdayCake = ({ visible = true, candlesLit = true }: BirthdayCakeProps) 
           transition={{ duration: 0.5, delay: 0.45 }}
         />
       </div>
-      
+
       {/* Cake plate/stand */}
       <motion.div
         className="relative mt-1"
@@ -163,7 +182,7 @@ const BirthdayCake = ({ visible = true, candlesLit = true }: BirthdayCakeProps) 
             `,
           }}
         />
-        
+
         {/* Plate rim/edge */}
         <div
           className="-mt-1 mx-auto"
@@ -181,7 +200,7 @@ const BirthdayCake = ({ visible = true, candlesLit = true }: BirthdayCakeProps) 
           }}
         />
       </motion.div>
-      
+
       {/* Table shadow directly beneath cake - grounds the object */}
       <motion.div
         className="absolute -bottom-4"

@@ -46,8 +46,8 @@ const BirthdayExperience = () => {
       {/* Celebration effects */}
       <Confetti visible={showCelebration} />
 
-      {/* Cake in center */}
-      <div className="absolute inset-0 flex items-center justify-center">
+      {/* Cake in lower half */}
+      <div className="absolute inset-0 flex items-center justify-center translate-y-[15%] md:translate-y-[20%]">
         <BirthdayCake visible={showCake} candlesLit={candlesLit} />
       </div>
 
@@ -61,7 +61,7 @@ const BirthdayExperience = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 1.5 }}
             style={{
-              background: `radial-gradient(ellipse 50% 40% at 50% 45%, 
+              background: `radial-gradient(ellipse 50% 40% at 50% 65%, 
                 hsla(40, 80%, 60%, 0.08) 0%, 
                 transparent 60%
               )`,
@@ -74,7 +74,7 @@ const BirthdayExperience = () => {
       <AnimatePresence>
         {step === "celebration" && (
           <motion.h1
-            className="absolute top-1/4 left-1/2 -translate-x-1/2 font-playfair text-3xl md:text-5xl text-center"
+            className="absolute top-[15%] md:top-[20%] left-1/2 -translate-x-1/2 font-playfair text-3xl md:text-5xl text-center"
             style={{ color: "hsl(42, 50%, 75%)", textShadow: "0 4px 20px hsla(30, 40%, 10%, 0.5)" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -87,10 +87,10 @@ const BirthdayExperience = () => {
       </AnimatePresence>
 
       {/* Message sequence */}
-      <MessageSequence active={showMessages} onComplete={() => {}} />
+      <MessageSequence active={showMessages} onComplete={() => { }} />
 
       {/* Action buttons - centered at bottom */}
-      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-40">
+      <div className="absolute bottom-12 md:bottom-20 left-1/2 -translate-x-1/2 z-40">
         <AnimatePresence mode="wait">
           {step === "dark" && (
             <ActionButton
