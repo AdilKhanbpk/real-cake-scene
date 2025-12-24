@@ -16,9 +16,6 @@ const MessageSequence = ({ active, onComplete }: MessageSequenceProps) => {
   const messages = [
     "I made this for you…",
     "Because today matters.",
-    "You matter.",
-    "This comes from my heart.",
-    "Happy Birthday.",
   ];
 
   useEffect(() => {
@@ -28,12 +25,12 @@ const MessageSequence = ({ active, onComplete }: MessageSequenceProps) => {
       setCurrentIndex((prev) => {
         if (prev >= messages.length - 1) {
           clearInterval(timer);
-          setTimeout(onComplete, 2000);
+          setTimeout(onComplete, 3000);
           return prev;
         }
         return prev + 1;
       });
-    }, 3500);
+    }, 2500);
 
     return () => clearInterval(timer);
   }, [active, messages.length, onComplete]);
