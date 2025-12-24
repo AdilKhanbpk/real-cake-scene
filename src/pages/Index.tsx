@@ -1,15 +1,15 @@
 import { Helmet } from "react-helmet-async";
-import CakeScene from "@/components/cake/CakeScene";
+import BirthdayExperience from "@/components/experience/BirthdayExperience";
 
 const Index = () => {
   return (
     <>
       <Helmet>
-        <title>Birthday Celebration</title>
-        <meta name="description" content="A warm, intimate birthday cake experience crafted with pure CSS realism." />
+        <title>Happy Birthday</title>
+        <meta name="description" content="A warm, intimate birthday celebration experience." />
       </Helmet>
       <main>
-        <CakeScene />
+        <BirthdayExperience />
       </main>
     </>
   );
