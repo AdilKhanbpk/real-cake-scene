@@ -28,7 +28,7 @@ const FairyLights = ({ visible }: FairyLightsProps) => {
         <motion.path
           d="M 0 8 Q 12.5 15 25 10 Q 37.5 5 50 10 Q 62.5 15 75 10 Q 87.5 5 100 8"
           fill="none"
-          stroke="hsl(var(--muted-gold))"
+          stroke="hsl(30 20% 30%)"
           strokeWidth="0.3"
           initial={{ pathLength: 0, opacity: 0 }}
           animate={{ pathLength: visible ? 1 : 0, opacity: visible ? 0.6 : 0 }}

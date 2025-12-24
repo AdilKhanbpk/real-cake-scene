@@ -39,7 +39,7 @@ const BirthdayExperience = () => {
       <Room isLit={isRoomLit} />
 
       {/* Decorations layer */}
-      <FairyLights visible={showDecorations} />
+      <FairyLights visible={isRoomLit} />
       <Balloons visible={showDecorations} />
       <Streamers visible={showDecorations} />
 

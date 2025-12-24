@@ -12,14 +12,14 @@ interface BalloonsProps {
 const Balloons = ({ visible }: BalloonsProps) => {
   if (!visible) return null;
 
-  // Balloon positions and colors for balanced composition
+  // Balloon positions and colors for balanced composition from warmth-glimmer
   const balloons: Array<{ x: number; y: number; color: "gold" | "cream" | "peach"; delay: number }> = [
-    { x: 8, y: 22, color: "cream", delay: 0 },
-    { x: 18, y: 38, color: "gold", delay: 0.15 },
-    { x: 28, y: 18, color: "peach", delay: 0.3 },
-    { x: 72, y: 28, color: "peach", delay: 0.2 },
-    { x: 82, y: 45, color: "gold", delay: 0.35 },
-    { x: 92, y: 22, color: "cream", delay: 0.1 },
+    { x: 8, y: 15, color: "peach", delay: 0 },
+    { x: 18, y: 25, color: "gold", delay: 0.2 },
+    { x: 28, y: 12, color: "cream", delay: 0.4 },
+    { x: 72, y: 18, color: "peach", delay: 0.3 },
+    { x: 82, y: 28, color: "gold", delay: 0.5 },
+    { x: 92, y: 15, color: "cream", delay: 0.1 },
   ];
 
   return (
