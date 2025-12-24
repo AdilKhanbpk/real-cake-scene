@@ -13,13 +13,13 @@ const Balloons = ({ visible }: BalloonsProps) => {
   if (!visible) return null;
 
   // Balloon positions and colors for balanced composition
-  const balloons: Array<{ x: number; color: "gold" | "cream" | "peach"; delay: number }> = [
-    { x: 8, color: "cream", delay: 0 },
-    { x: 18, color: "gold", delay: 0.15 },
-    { x: 28, color: "peach", delay: 0.3 },
-    { x: 72, color: "peach", delay: 0.2 },
-    { x: 82, color: "gold", delay: 0.35 },
-    { x: 92, color: "cream", delay: 0.1 },
+  const balloons: Array<{ x: number; y: number; color: "gold" | "cream" | "peach"; delay: number }> = [
+    { x: 8, y: 22, color: "cream", delay: 0 },
+    { x: 18, y: 38, color: "gold", delay: 0.15 },
+    { x: 28, y: 18, color: "peach", delay: 0.3 },
+    { x: 72, y: 28, color: "peach", delay: 0.2 },
+    { x: 82, y: 45, color: "gold", delay: 0.35 },
+    { x: 92, y: 22, color: "cream", delay: 0.1 },
   ];
 
   return (
@@ -30,11 +30,12 @@ const Balloons = ({ visible }: BalloonsProps) => {
       transition={{ duration: 0.5 }}
     >
       {/* Balloons positioned at top */}
-      <div className="absolute top-8 left-0 right-0 h-32">
+      <div className="absolute top-0 left-0 right-0 h-full">
         {balloons.map((balloon, index) => (
           <Balloon
             key={index}
             x={balloon.x}
+            y={balloon.y}
             color={balloon.color}
             delay={balloon.delay}
           />

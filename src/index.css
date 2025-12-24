@@ -43,17 +43,24 @@
     --luxury-gold-muted: 40 40% 45%;
     --luxury-amber: 32 70% 50%;
     --luxury-warm-white: 38 30% 96%;
-    
+
     /* Room and lighting */
     --room-dark: 30 20% 4%;
     --room-wall: 32 15% 18%;
     --room-wall-lit: 35 18% 28%;
     --warm-light-source: 40 80% 70%;
     --warm-light-glow: 38 70% 60%;
-    
+
     /* Decorations */
     --balloon-latex: 25 35% 75%;
     --balloon-highlight: 40 30% 88%;
+    --balloon-gold: 42 65% 58%;
+    --balloon-cream: 40 35% 92%;
+
+    --muted-gold: 42 40% 45%;
+    --warm-beige: 35 30% 70%;
+    --soft-peach: 25 40% 65%;
+
     --fairy-light: 45 90% 75%;
     --fairy-glow: 42 85% 65%;
     --streamer-gold: 42 55% 55%;
@@ -69,7 +76,7 @@
     --cake-cocoa: 25 35% 42%;
     --cake-frosting: 38 30% 92%;
     --cake-frosting-shadow: 35 25% 82%;
-    
+
     /* Candle tokens */
     --candle-wax: 45 25% 85%;
     --candle-wax-shadow: 40 20% 70%;
@@ -77,7 +84,7 @@
     --flame-mid: 35 100% 55%;
     --flame-outer: 25 100% 45%;
     --flame-glow: 40 100% 60%;
-    
+
     /* Scene tokens */
     --table-surface: 25 25% 16%;
     --table-highlight: 30 22% 24%;
@@ -142,22 +149,49 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  .balloon-latex {
+    background: radial-gradient(circle at 35% 30%, hsl(25, 45%, 85%), hsl(25, 35%, 70%)) !important;
+    box-shadow: inset -4px -4px 12px hsla(25, 30%, 40%, 0.3);
+  }
+
+  .balloon-gold {
+    background: radial-gradient(circle at 35% 30%, hsl(42, 65%, 80%), hsl(42, 55%, 55%)) !important;
+    box-shadow: inset -4px -4px 12px hsla(42, 50%, 30%, 0.3);
+  }
+
+  .balloon-cream {
+    background: radial-gradient(circle at 35% 30%, hsl(40, 40%, 98%), hsl(40, 35%, 82%)) !important;
+    box-shadow: inset -4px -4px 12px hsla(40, 30%, 60%, 0.3);
+  }
+
+  .fairy-light {
+    background: radial-gradient(circle at 30% 30%, hsl(45, 95%, 85%), hsl(43, 85%, 65%));
+    box-shadow:
+      0 0 8px hsla(45, 90%, 75%, 0.8),
+      0 0 20px hsla(42, 85%, 60%, 0.4);
+  }
 }
 
 /* Candle flame animation */
 @keyframes flame-flicker {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scaleY(1) scaleX(1) skewX(0deg);
     opacity: 1;
   }
+
   25% {
     transform: scaleY(1.04) scaleX(0.97) skewX(-1deg);
     opacity: 0.95;
   }
+
   50% {
     transform: scaleY(0.96) scaleX(1.02) skewX(1deg);
     opacity: 1;
   }
+
   75% {
     transform: scaleY(1.02) scaleX(0.98) skewX(-0.5deg);
     opacity: 0.97;
@@ -165,10 +199,13 @@
 }
 
 @keyframes glow-pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.6;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.75;
     transform: scale(1.05);

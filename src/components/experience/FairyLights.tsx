@@ -4,95 +4,66 @@ interface FairyLightsProps {
   visible: boolean;
 }
 
-/**
- * Warm fairy lights with realistic cable curve and organic glow.
- * Each bulb has subtle independent flicker for life-like effect.
- */
 const FairyLights = ({ visible }: FairyLightsProps) => {
-  if (!visible) return null;
-
-  // Light positions along a gentle curve
-  const lights = Array.from({ length: 12 }, (_, i) => {
-    const t = i / 11;
-    // Catenary-like curve for natural cable droop
-    const x = 10 + t * 80;
-    const y = 8 + Math.sin(t * Math.PI) * 6;
-    return { x, y, delay: i * 0.08 };
-  });
+  const lights = Array.from({ length: 12 }, (_, i) => ({
+    id: i,
+    x: 8 + (i * 7.5),
+    delay: i * 0.1,
+    flickerDelay: Math.random() * 2,
+  }));
 
   return (
     <motion.div
-      className="absolute inset-0 pointer-events-none overflow-hidden"
+      className="absolute top-0 left-0 right-0 h-32 pointer-events-none overflow-hidden"
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
+      animate={{ opacity: visible ? 1 : 0 }}
+      transition={{ duration: 1.5, ease: "easeOut" }}
     >
-      {/* Cable connecting lights */}
+      {/* Cable */}
       <svg
-        className="absolute top-0 left-0 w-full h-24"
-        viewBox="0 0 100 24"
+        className="absolute top-8 left-0 w-full h-24"
+        viewBox="0 0 100 20"
         preserveAspectRatio="none"
       >
-        <path
-          d={`M 10 8 Q 50 20 90 8`}
+        <motion.path
+          d="M 0 8 Q 12.5 15 25 10 Q 37.5 5 50 10 Q 62.5 15 75 10 Q 87.5 5 100 8"
           fill="none"
-          stroke="hsla(30, 20%, 25%, 0.6)"
+          stroke="hsl(var(--muted-gold))"
           strokeWidth="0.3"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: visible ? 1 : 0, opacity: visible ? 0.6 : 0 }}
+          transition={{ duration: 1.5, delay: 0.3 }}
         />
       </svg>
 
-      {/* Individual fairy lights */}
-      {lights.map((light, index) => (
+      {/* Lights */}
+      {lights.map((light) => (
         <motion.div
-          key={index}
+          key={light.id}
           className="absolute"
-          style={{
-            left: `${light.x}%`,
-            top: `${light.y}%`,
-          }}
+          style={{ left: `${light.x}%`, top: "2.5rem" }}
           initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
+          animate={{
+            opacity: visible ? 1 : 0,
+            scale: visible ? 1 : 0
+          }}
           transition={{
             duration: 0.6,
-            delay: light.delay,
-            ease: "easeOut",
+            delay: visible ? light.delay + 0.5 : 0,
+            ease: "easeOut"
           }}
         >
-          {/* Glow halo */}
           <motion.div
-            className="absolute -inset-4 rounded-full"
-            style={{
-              background: `radial-gradient(circle, 
-                hsla(45, 90%, 75%, 0.4) 0%, 
-                hsla(42, 85%, 65%, 0.1) 40%, 
-                transparent 70%
-              )`,
-            }}
+            className="fairy-light w-3 h-3 md:w-4 md:h-4 rounded-full"
             animate={{
-              opacity: [0.6, 1, 0.6],
+              opacity: [0.7, 1, 0.7],
               scale: [0.95, 1.05, 0.95],
             }}
             transition={{
               duration: 2 + Math.random(),
               repeat: Infinity,
+              delay: light.flickerDelay,
               ease: "easeInOut",
-              delay: Math.random() * 2,
-            }}
-          />
-          
-          {/* Bulb */}
-          <div
-            className="w-2 h-2 rounded-full relative"
-            style={{
-              background: `radial-gradient(circle at 40% 40%, 
-                hsl(45, 95%, 85%) 0%, 
-                hsl(42, 90%, 70%) 50%, 
-                hsl(38, 80%, 55%) 100%
-              )`,
-              boxShadow: `
-                0 0 8px hsla(45, 90%, 70%, 0.8),
-                0 0 20px hsla(42, 85%, 60%, 0.4)
-              `,
             }}
           />
         </motion.div>
